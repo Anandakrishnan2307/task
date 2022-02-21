@@ -29,3 +29,14 @@ CREATE TABLE `sub_category` (
   `updated_by` varchar(50) NOT NULL,
   `updated_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`category_id`);
+
+ALTER TABLE `sub_category`
+  ADD PRIMARY KEY (`sub_category_id`),
+  ADD KEY `category_id` (`category_id`);
+	
+ALTER TABLE `sub_category`
+  ADD CONSTRAINT `category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
